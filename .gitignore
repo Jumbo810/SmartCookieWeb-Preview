@@ -1,0 +1,12 @@
+.gradle
+.idea
+.gradle/
+.idea/
+local.properties
+versionCode.txt
+versionName.txt
+/build
+/app/build
+# /app/src/main/jniLibs
+/WebViewChromeClient/
+app/bin

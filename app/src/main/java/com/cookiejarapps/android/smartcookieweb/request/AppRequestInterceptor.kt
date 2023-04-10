@@ -9,8 +9,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.cookiejarapps.android.smartcookieweb.BrowserActivity
 import com.cookiejarapps.android.smartcookieweb.R
-import com.cookiejarapps.android.smartcookieweb.addons.AddonDetailsActivity
-import com.cookiejarapps.android.smartcookieweb.addons.AddonsActivity
+// import com.cookiejarapps.android.smartcookieweb.addons.AddonDetailsActivity
+// import com.cookiejarapps.android.smartcookieweb.addons.AddonsActivity
 import com.cookiejarapps.android.smartcookieweb.browser.home.HomeFragmentDirections
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
@@ -101,20 +101,20 @@ class AppRequestInterceptor(val context: Context) : RequestInterceptor {
                 context
             ).customAddonCollection) {
 
-            val matchResult = "https://addons.mozilla.org/firefox/downloads/file/([^\\s]+)/([^\\s]+\\.xpi)".toRegex().matchEntire(uri)
-            if (matchResult != null) {
+            // val matchResult = "https://addons.mozilla.org/firefox/downloads/file/([^\\s]+)/([^\\s]+\\.xpi)".toRegex().matchEntire(uri)
+            // if (matchResult != null) {
 
-                matchResult.groupValues.getOrNull(1)?.let { addonId ->
-                    val intent = Intent(context, AddonsActivity::class.java)
-                    intent.putExtra("ADDON_ID", addonId)
-                    intent.putExtra("ADDON_URL", uri)
-                    Log.d("gdsgsdg", uri)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(context, intent, null)
+            //     matchResult.groupValues.getOrNull(1)?.let { addonId ->
+            //         val intent = Intent(context, AddonsActivity::class.java)
+            //         intent.putExtra("ADDON_ID", addonId)
+            //         intent.putExtra("ADDON_URL", uri)
+            //         Log.d("gdsgsdg", uri)
+            //         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            //         startActivity(context, intent, null)
 
-                    return InterceptionResponse.Deny
-                }
-            }
+            //         return InterceptionResponse.Deny
+            //     }
+            // }
         }
 
         // In all other case we let the original request proceed.

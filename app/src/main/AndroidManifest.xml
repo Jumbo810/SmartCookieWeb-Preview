@@ -35,11 +35,24 @@
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+      </intent-filter>
+    </activity>
+
+    <activity android:name=".AutoStart"
+        android:launchMode="singleTask"
+        android:resizeableActivity="true"
+        android:supportsPictureInPicture="true"
+        android:configChanges="keyboard|keyboardHidden|mcc|mnc|orientation|screenSize|locale|layoutDirection|smallestScreenSize|screenLayout"
+        android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
 
-    <activity
+    <!-- <activity
         android:name=".addons.AddonsActivity"
         android:label="@string/mozac_feature_addons_addons"
         android:parentActivityName=".BrowserActivity"
@@ -78,7 +91,7 @@
     <activity
         android:name=".history.HistoryActivity"
         android:label="@string/action_history"
-        android:theme="@style/AppThemeAddons" />
+        android:theme="@style/AppThemeAddons" /> -->
 
     <activity
         android:name=".IntentReceiverActivity"

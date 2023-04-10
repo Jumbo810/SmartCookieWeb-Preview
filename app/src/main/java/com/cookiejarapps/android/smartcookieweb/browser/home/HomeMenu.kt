@@ -32,7 +32,7 @@ class HomeMenu(
         object Quit : Item()
     }
 
-    private val shouldUseBottomToolbar = UserPreferences(context).shouldUseBottomToolbar
+    // private val shouldUseBottomToolbar = UserPreferences(context).shouldUseBottomToolbar
 
     private val coreMenuItems by lazy {
 
@@ -91,11 +91,11 @@ class HomeMenu(
             items.getHighlight()?.let { onHighlightPresent(it) }
         }
 
-        if (shouldUseBottomToolbar) {
-            menuItems.reversed()
-        } else {
+        // if (shouldUseBottomToolbar) {
+        //     menuItems.reversed()
+        // } else {
             menuItems
-        }
+        // }
     }
 
     init {

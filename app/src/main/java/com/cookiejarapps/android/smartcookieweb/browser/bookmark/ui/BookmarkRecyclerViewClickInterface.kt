@@ -1,9 +1,9 @@
-package com.cookiejarapps.android.smartcookieweb.browser.bookmark.ui
+// package com.cookiejarapps.android.smartcookieweb.browser.bookmark.ui
 
-import android.view.View
+// import android.view.View
 
-interface BookmarkRecyclerViewClickInterface {
-    fun onRecyclerItemClicked(v: View, position: Int)
+// interface BookmarkRecyclerViewClickInterface {
+//     fun onRecyclerItemClicked(v: View, position: Int)
 
-    fun onRecyclerItemLongClicked(v: View, position: Int): Boolean
-}
+//     fun onRecyclerItemLongClicked(v: View, position: Int): Boolean
+// }

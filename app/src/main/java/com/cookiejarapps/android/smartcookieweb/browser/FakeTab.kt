@@ -2,7 +2,7 @@ package com.cookiejarapps.android.smartcookieweb.browser
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.Gravity
+// import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.core.view.doOnNextLayout
@@ -12,7 +12,7 @@ import com.cookiejarapps.android.smartcookieweb.ext.components
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import mozilla.components.browser.thumbnails.loader.ThumbnailLoader
 import mozilla.components.concept.base.images.ImageLoadRequest
-import com.cookiejarapps.android.smartcookieweb.components.toolbar.ToolbarPosition
+// import com.cookiejarapps.android.smartcookieweb.components.toolbar.ToolbarPosition
 import com.cookiejarapps.android.smartcookieweb.databinding.TabPreviewBinding
 import kotlin.math.max
 
@@ -30,20 +30,20 @@ class FakeTab @JvmOverloads constructor(
         inflater.inflate(R.layout.tab_preview, this, true)
     }
 
-    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        super.onLayout(changed, left, top, right, bottom)
-        binding.previewThumbnail.translationY = if (UserPreferences(context).toolbarPosition != ToolbarPosition.BOTTOM.ordinal) {
-            binding.fakeToolbar.height.toFloat()
-        } else {
-            0f
-        }
+    // override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+    //     super.onLayout(changed, left, top, right, bottom)
+    //     binding.previewThumbnail.translationY = if (UserPreferences(context).toolbarPosition != ToolbarPosition.BOTTOM.ordinal) {
+    //         binding.fakeToolbar.height.toFloat()
+    //     } else {
+    //         0f
+    //     }
 
-        if (UserPreferences(context).toolbarPosition != ToolbarPosition.BOTTOM.ordinal) {
-            binding.fakeToolbar.updateLayoutParams<LayoutParams> {
-                gravity = Gravity.TOP
-            }
-        }
-    }
+    //     if (UserPreferences(context).toolbarPosition != ToolbarPosition.BOTTOM.ordinal) {
+    //         binding.fakeToolbar.updateLayoutParams<LayoutParams> {
+    //             gravity = Gravity.TOP
+    //         }
+    //     }
+    // }
 
     fun loadPreviewThumbnail(thumbnailId: String) {
         doOnNextLayout {

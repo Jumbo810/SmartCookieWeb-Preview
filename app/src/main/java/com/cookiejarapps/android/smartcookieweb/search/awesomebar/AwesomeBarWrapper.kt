@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.AbstractComposeView
 import androidx.core.graphics.toColor
 import com.cookiejarapps.android.smartcookieweb.R
-import com.cookiejarapps.android.smartcookieweb.components.toolbar.ToolbarPosition
+// import com.cookiejarapps.android.smartcookieweb.components.toolbar.ToolbarPosition
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import com.cookiejarapps.android.smartcookieweb.theme.FirefoxTheme
 import mozilla.components.compose.browser.awesomebar.AwesomeBar
@@ -33,11 +33,11 @@ class AwesomeBarWrapper @JvmOverloads constructor(
             return
         }
 
-        val orientation = if (UserPreferences(context).toolbarPosition == ToolbarPosition.TOP.ordinal) {
-            AwesomeBarOrientation.BOTTOM
-        } else {
-            AwesomeBarOrientation.TOP
-        }
+        // val orientation = if (UserPreferences(context).toolbarPosition == ToolbarPosition.TOP.ordinal) {
+        //     AwesomeBarOrientation.BOTTOM
+        // } else {
+        //     AwesomeBarOrientation.TOP
+        // }
 
         FirefoxTheme {
             AwesomeBar(

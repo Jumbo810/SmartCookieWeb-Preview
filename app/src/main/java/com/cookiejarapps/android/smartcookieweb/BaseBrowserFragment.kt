@@ -27,13 +27,13 @@ import androidx.navigation.fragment.findNavController
 import com.cookiejarapps.android.smartcookieweb.*
 import com.cookiejarapps.android.smartcookieweb.browser.BrowsingMode
 import com.cookiejarapps.android.smartcookieweb.browser.HomepageChoice
-import com.cookiejarapps.android.smartcookieweb.browser.bookmark.ui.BookmarkFragment
+// import com.cookiejarapps.android.smartcookieweb.browser.bookmark.ui.BookmarkFragment
 import com.cookiejarapps.android.smartcookieweb.browser.home.HomeFragmentDirections
-import com.cookiejarapps.android.smartcookieweb.browser.tabs.TabsTrayFragment
+// import com.cookiejarapps.android.smartcookieweb.browser.tabs.TabsTrayFragment
 import com.cookiejarapps.android.smartcookieweb.components.StoreProvider
-import com.cookiejarapps.android.smartcookieweb.components.toolbar.*
+// import com.cookiejarapps.android.smartcookieweb.components.toolbar.*
 import com.cookiejarapps.android.smartcookieweb.ext.components
-import com.cookiejarapps.android.smartcookieweb.integration.FindInPageIntegration
+// import com.cookiejarapps.android.smartcookieweb.integration.FindInPageIntegration
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -78,20 +78,21 @@ import mozilla.components.support.ktx.android.view.exitImmersiveMode
 import mozilla.components.support.ktx.android.view.hideKeyboard
 import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifAnyChanged
 import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifChanged
-import com.cookiejarapps.android.smartcookieweb.components.toolbar.ToolbarIntegration
+// import com.cookiejarapps.android.smartcookieweb.components.toolbar.ToolbarIntegration
 import com.cookiejarapps.android.smartcookieweb.downloads.DownloadService
 import com.cookiejarapps.android.smartcookieweb.integration.ContextMenuIntegration
 import mozilla.components.feature.downloads.manager.FetchDownloadManager
 import mozilla.components.support.base.log.logger.Logger.Companion.debug
-import com.cookiejarapps.android.smartcookieweb.components.toolbar.ToolbarPosition
-import com.cookiejarapps.android.smartcookieweb.integration.ReaderModeIntegration
+// import com.cookiejarapps.android.smartcookieweb.components.toolbar.ToolbarPosition
+// import com.cookiejarapps.android.smartcookieweb.integration.ReaderModeIntegration
 import com.cookiejarapps.android.smartcookieweb.ssl.showSslDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.mozilla.fenix.home.HomeScreenViewModel
 import org.mozilla.fenix.home.SharedViewModel
 import java.lang.ref.WeakReference
-import mozilla.components.feature.session.behavior.ToolbarPosition as MozacToolbarPosition
+// import mozilla.components.feature.session.behavior.ToolbarPosition as MozacToolbarPosition
 import com.cookiejarapps.android.smartcookieweb.databinding.FragmentBrowserBinding
+import android.view.Gravity
 
 /**
  * Base fragment extended by [BrowserFragment].
@@ -102,19 +103,19 @@ import com.cookiejarapps.android.smartcookieweb.databinding.FragmentBrowserBindi
 @Suppress("TooManyFunctions", "LargeClass")
 abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, ActivityResultHandler, AccessibilityManager.AccessibilityStateChangeListener {
 
-    private lateinit var browserFragmentStore: BrowserFragmentStore
+    // private lateinit var browserFragmentStore: BrowserFragmentStore
     private lateinit var browserAnimator: BrowserAnimator
 
-    private var _browserInteractor: BrowserToolbarViewInteractor? = null
-    protected val browserInteractor: BrowserToolbarViewInteractor
-        get() = _browserInteractor!!
+    // private var _browserInteractor: BrowserToolbarViewInteractor? = null
+    // protected val browserInteractor: BrowserToolbarViewInteractor
+    //     get() = _browserInteractor!!
 
-    @VisibleForTesting
-    @Suppress("VariableNaming")
-    internal var _browserToolbarView: BrowserToolbarView? = null
-    @VisibleForTesting
-    internal val browserToolbarView: BrowserToolbarView
-        get() = _browserToolbarView!!
+    // @VisibleForTesting
+    // @Suppress("VariableNaming")
+    // internal var _browserToolbarView: BrowserToolbarView? = null
+    // @VisibleForTesting
+    // internal val browserToolbarView: BrowserToolbarView
+    //     get() = _browserToolbarView!!
 
     protected val thumbnailsFeature = ViewBoundFeatureWrapper<BrowserThumbnails>()
 
@@ -124,8 +125,8 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     private val shareDownloadsFeature = ViewBoundFeatureWrapper<ShareDownloadFeature>()
     private val appLinksFeature = ViewBoundFeatureWrapper<AppLinksFeature>()
     private val promptsFeature = ViewBoundFeatureWrapper<PromptFeature>()
-    private val findInPageIntegration = ViewBoundFeatureWrapper<FindInPageIntegration>()
-    private val toolbarIntegration = ViewBoundFeatureWrapper<ToolbarIntegration>()
+    // private val findInPageIntegration = ViewBoundFeatureWrapper<FindInPageIntegration>()
+    // private val toolbarIntegration = ViewBoundFeatureWrapper<ToolbarIntegration>()
     private val sitePermissionsFeature = ViewBoundFeatureWrapper<SitePermissionsFeature>()
     private val fullScreenFeature = ViewBoundFeatureWrapper<FullScreenFeature>()
     private val swipeRefreshFeature = ViewBoundFeatureWrapper<SwipeRefreshFeature>()
@@ -134,7 +135,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         ViewBoundFeatureWrapper<MediaSessionFullscreenFeature>()
     private val searchFeature = ViewBoundFeatureWrapper<SearchFeature>()
     private var pipFeature: PictureInPictureFeature? = null
-    val readerViewFeature = ViewBoundFeatureWrapper<ReaderModeIntegration>()
+    // val readerViewFeature = ViewBoundFeatureWrapper<ReaderModeIntegration>()
 
     var customTabSessionId: String? = null
 
@@ -160,11 +161,11 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         _binding = FragmentBrowserBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        browserFragmentStore = StoreProvider.get(this) {
-            BrowserFragmentStore(
-                BrowserFragmentState()
-            )
-        }
+        // browserFragmentStore = StoreProvider.get(this) {
+        //     BrowserFragmentStore(
+        //         BrowserFragmentState()
+        //     )
+        // }
 
         return view
     }
@@ -199,7 +200,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         val store = context.components.store
         val activity = requireActivity() as BrowserActivity
 
-        val toolbarHeight = resources.getDimensionPixelSize(R.dimen.browser_toolbar_height)
+        // val toolbarHeight = resources.getDimensionPixelSize(R.dimen.browser_toolbar_height)
 
         browserAnimator = BrowserAnimator(
             fragment = WeakReference(this),
@@ -215,66 +216,66 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             putExtra(BrowserActivity.OPEN_TO_BROWSER, true)
         }
 
-        val browserToolbarController = DefaultBrowserToolbarController(
-            store = store,
-            activity = activity,
-            navController = findNavController(),
-            engineView = binding.engineView,
-            customTabSessionId = customTabSessionId,
-            onTabCounterClicked = {
-                thumbnailsFeature.get()?.requestScreenshot()
+        // val browserToolbarController = DefaultBrowserToolbarController(
+        //     store = store,
+        //     activity = activity,
+        //     navController = findNavController(),
+        //     engineView = binding.engineView,
+        //     customTabSessionId = customTabSessionId,
+        //     onTabCounterClicked = {
+        //         thumbnailsFeature.get()?.requestScreenshot()
 
-                val drawerLayout = activity.findViewById<DrawerLayout>(R.id.drawer_layout)
-                val tabDrawer = if(UserPreferences(activity).swapDrawers) activity.findViewById<FrameLayout>(R.id.right_drawer) else activity.findViewById<FrameLayout>(R.id.left_drawer)
+        //         val drawerLayout = activity.findViewById<DrawerLayout>(R.id.drawer_layout)
+        //         val tabDrawer = if(UserPreferences(activity).swapDrawers) activity.findViewById<FrameLayout>(R.id.right_drawer) else activity.findViewById<FrameLayout>(R.id.left_drawer)
 
-                if (tabDrawer != null) {
-                    drawerLayout?.openDrawer(tabDrawer)
-                }
-            }
-        )
-        val browserToolbarMenuController = DefaultBrowserToolbarMenuController(
-            activity = activity,
-            navController = findNavController(),
-            findInPageLauncher = { findInPageIntegration.withFeature { it.launch() } },
-            browserAnimator = browserAnimator,
-            customTabSessionId = customTabSessionId,
-            store = store,
-        )
+        //         if (tabDrawer != null) {
+        //             drawerLayout?.openDrawer(tabDrawer)
+        //         }
+        //     }
+        // )
+        // val browserToolbarMenuController = DefaultBrowserToolbarMenuController(
+        //     activity = activity,
+        //     navController = findNavController(),
+        //     findInPageLauncher = { findInPageIntegration.withFeature { it.launch() } },
+        //     browserAnimator = browserAnimator,
+        //     customTabSessionId = customTabSessionId,
+        //     store = store,
+        // )
 
-        _browserInteractor = BrowserInteractor(
-            browserToolbarController,
-            browserToolbarMenuController
-        )
+        // _browserInteractor = BrowserInteractor(
+        //     browserToolbarController,
+        //     browserToolbarMenuController
+        // )
 
-        _browserToolbarView = BrowserToolbarView(
-            container = binding.browserLayout,
-            toolbarPosition = if(UserPreferences(context).toolbarPosition == ToolbarPosition.BOTTOM.ordinal) ToolbarPosition.BOTTOM else ToolbarPosition.TOP,
-            interactor = browserInteractor,
-            customTabSession = customTabSessionId?.let { store.state.findCustomTab(it) },
-            lifecycleOwner = viewLifecycleOwner
-        )
+        // _browserToolbarView = BrowserToolbarView(
+        //     container = binding.browserLayout,
+        //     toolbarPosition = if(UserPreferences(context).toolbarPosition == ToolbarPosition.BOTTOM.ordinal) ToolbarPosition.BOTTOM else ToolbarPosition.TOP,
+        //     interactor = browserInteractor,
+        //     customTabSession = customTabSessionId?.let { store.state.findCustomTab(it) },
+        //     lifecycleOwner = viewLifecycleOwner
+        // )
 
-        toolbarIntegration.set(
-            feature = browserToolbarView.toolbarIntegration,
-            owner = this,
-            view = view
-        )
+        // toolbarIntegration.set(
+        //     feature = browserToolbarView.toolbarIntegration,
+        //     owner = this,
+        //     view = view
+        // )
 
-        findInPageIntegration.set(
-            feature = FindInPageIntegration(
-                store = store,
-                sessionId = customTabSessionId,
-                stub = binding.stubFindInPage,
-                engineView = binding.engineView,
-                toolbarInfo = FindInPageIntegration.ToolbarInfo(
-                    browserToolbarView.view,
-                    UserPreferences(context).hideBarWhileScrolling,
-                    !UserPreferences(context).shouldUseBottomToolbar
-                )
-            ),
-            owner = this,
-            view = view
-        )
+        // findInPageIntegration.set(
+        //     feature = FindInPageIntegration(
+        //         store = store,
+        //         sessionId = customTabSessionId,
+        //         stub = binding.stubFindInPage,
+        //         engineView = binding.engineView,
+        //         toolbarInfo = FindInPageIntegration.ToolbarInfo(
+        //             browserToolbarView.view,
+        //             UserPreferences(context).hideBarWhileScrolling,
+        //             !UserPreferences(context).shouldUseBottomToolbar
+        //         )
+        //     ),
+        //     owner = this,
+        //     view = view
+        // )
 
         contextMenuIntegration.set(
             feature = ContextMenuIntegration(
@@ -290,18 +291,18 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             view = view
         )
 
-        readerViewFeature.set(
-            feature = ReaderModeIntegration(
-                requireContext(),
-                components.engine,
-                components.store,
-                browserToolbarView.view,
-                binding.readerViewBar,
-                binding.readerViewAppearanceButton
-            ),
-            owner = this,
-            view = view
-        )
+        // readerViewFeature.set(
+        //     feature = ReaderModeIntegration(
+        //         requireContext(),
+        //         components.engine,
+        //         components.store,
+        //         browserToolbarView.view,
+        //         binding.readerViewBar,
+        //         binding.readerViewAppearanceButton
+        //     ),
+        //     owner = this,
+        //     view = view
+        // )
 
         promptsFeature.set(
                 feature = PromptFeature(
@@ -439,9 +440,9 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             view = view
         )
 
-        browserToolbarView.view.display.setOnSiteSecurityClickedListener {
-            activity.showSslDialog()
-        }
+        // browserToolbarView.view.display.setOnSiteSecurityClickedListener {
+        //     activity.showSslDialog()
+        // }
 
         expandToolbarOnNavigation(store)
 
@@ -468,7 +469,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             )
         }
 
-        initializeEngineView(toolbarHeight)
+        // initializeEngineView(toolbarHeight)
     }
 
     @VisibleForTesting
@@ -480,10 +481,10 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                 .ifAnyChanged {
                         tab -> arrayOf(tab.content.url, tab.content.loadRequest)
                 }
-                .collect {
-                    findInPageIntegration.onBackPressed()
-                    browserToolbarView.expand()
-                }
+                // .collect {
+                //     findInPageIntegration.onBackPressed()
+                //     browserToolbarView.expand()
+                // }
         }
     }
 
@@ -515,8 +516,8 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         sessionId: String?,
         store: BrowserStore,
         view: View,
-        context: Context,
-        toolbarHeight: Int
+        context: Context
+        // toolbarHeight: Int
     ) {
         val savedDownloadState =
             sharedViewModel.downloadDialogState[sessionId]
@@ -553,7 +554,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             onDismiss = onDismiss
         ).show()*/
 
-        browserToolbarView.expand()
+        // browserToolbarView.expand()
     }
 
     @VisibleForTesting
@@ -562,35 +563,36 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     }
 
     @VisibleForTesting
-    internal fun initializeEngineView(toolbarHeight: Int) {
+    internal fun initializeEngineView() {
+    // internal fun initializeEngineView(toolbarHeight: Int) {
         val context = requireContext()
 
         if (UserPreferences(context).hideBarWhileScrolling) {
-            binding.engineView.setDynamicToolbarMaxHeight(toolbarHeight)
+            // binding.engineView.setDynamicToolbarMaxHeight(toolbarHeight)
 
-            val toolbarPosition = if (UserPreferences(context).shouldUseBottomToolbar) {
-                MozacToolbarPosition.BOTTOM
-            } else {
-                MozacToolbarPosition.TOP
-            }
-            (binding.swipeRefresh.layoutParams as CoordinatorLayout.LayoutParams).behavior =
-                EngineViewBrowserToolbarBehavior(
-                    context,
-                    null,
-                    binding.swipeRefresh,
-                    toolbarHeight,
-                    toolbarPosition
-                )
+            // val toolbarPosition = if (UserPreferences(context).shouldUseBottomToolbar) {
+            //     MozacToolbarPosition.BOTTOM
+            // } else {
+            //     MozacToolbarPosition.TOP
+            // }
+            // (binding.swipeRefresh.layoutParams as CoordinatorLayout.LayoutParams).behavior =
+            //     EngineViewBrowserToolbarBehavior(
+            //         context,
+            //         null,
+            //         binding.swipeRefresh,
+            //         toolbarHeight,
+            //         toolbarPosition
+            //     )
         } else {
             binding.engineView.setDynamicToolbarMaxHeight(0)
 
             val swipeRefreshParams =
                 binding.swipeRefresh.layoutParams as CoordinatorLayout.LayoutParams
-            if (UserPreferences(context).shouldUseBottomToolbar) {
-                swipeRefreshParams.bottomMargin = toolbarHeight
-            } else {
-                swipeRefreshParams.topMargin = toolbarHeight
-            }
+            // if (UserPreferences(context).shouldUseBottomToolbar) {
+            //     swipeRefreshParams.bottomMargin = toolbarHeight
+            // } else {
+            //     swipeRefreshParams.topMargin = toolbarHeight
+            // }
         }
     }
 
@@ -663,11 +665,12 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         if (browserInitialized) {
             view?.let { view ->
                 fullScreenChanged(false)
-                browserToolbarView.expand()
+                // browserToolbarView.expand()
 
-                val toolbarHeight = resources.getDimensionPixelSize(R.dimen.browser_toolbar_height)
+                // val toolbarHeight = resources.getDimensionPixelSize(R.dimen.browser_toolbar_height)
                 val context = requireContext()
-                resumeDownloadDialogState(selectedTab.id, context.components.store, view, context, toolbarHeight)
+                resumeDownloadDialogState(selectedTab.id, context.components.store, view, context)
+                // resumeDownloadDialogState(selectedTab.id, context.components.store, view, context, toolbarHeight)
             }
         } else {
             view?.let { view -> initializeUI(view) }
@@ -715,12 +718,12 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
 
     @CallSuper
     override fun onBackPressed(): Boolean {
-        return readerViewFeature.onBackPressed() ||
-                findInPageIntegration.onBackPressed() ||
-                fullScreenFeature.onBackPressed() ||
+        return  fullScreenFeature.onBackPressed() ||
                 promptsFeature.onBackPressed() ||
                 sessionFeature.onBackPressed() ||
                 removeSessionIfNeeded()
+                // readerViewFeature.onBackPressed() ||
+                // findInPageIntegration.onBackPressed() ||
     }
 
     /**
@@ -795,8 +798,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     /**
      * Returns the layout [android.view.Gravity] for the quick settings and ETP dialog.
      */
-    protected fun getAppropriateLayoutGravity(): Int =
-        UserPreferences(requireContext()).toolbarPositionType.androidGravity
+    protected fun getAppropriateLayoutGravity(): Int = Gravity.TOP
 
     /**
      * Set the activity normal/private theme to match the current session.
@@ -840,7 +842,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     internal fun fullScreenChanged(inFullScreen: Boolean) {
         if (inFullScreen) {
             // Close find in page bar if opened
-            findInPageIntegration.onBackPressed()
+            // findInPageIntegration.onBackPressed()
 
             requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
             requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
@@ -850,8 +852,8 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                     or View.SYSTEM_UI_FLAG_FULLSCREEN
                     or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
 
-            browserToolbarView.collapse()
-            browserToolbarView.view.isVisible = false
+            // browserToolbarView.collapse()
+            // browserToolbarView.view.isVisible = false
             val browserEngine = binding.swipeRefresh.layoutParams as CoordinatorLayout.LayoutParams
             browserEngine.bottomMargin = 0
             browserEngine.topMargin = 0
@@ -867,12 +869,12 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             requireActivity().window.getDecorView().systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
 
             activity?.exitImmersiveMode()
-            if (webAppToolbarShouldBeVisible) {
-                browserToolbarView.view.isVisible = true
-                val toolbarHeight = resources.getDimensionPixelSize(R.dimen.browser_toolbar_height)
-                initializeEngineView(toolbarHeight)
-                browserToolbarView.expand()
-            }
+            // if (webAppToolbarShouldBeVisible) {
+            //     browserToolbarView.view.isVisible = true
+            //     val toolbarHeight = resources.getDimensionPixelSize(R.dimen.browser_toolbar_height)
+            //     initializeEngineView(toolbarHeight)
+            //     browserToolbarView.expand()
+            // }
         }
 
         binding.swipeRefresh?.isEnabled = shouldPullToRefreshBeEnabled(inFullScreen)
@@ -884,8 +886,8 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     override fun onDestroyView() {
         super.onDestroyView()
 
-        _browserToolbarView = null
-        _browserInteractor = null
+        // _browserToolbarView = null
+        // _browserInteractor = null
         _binding = null
     }
 
@@ -897,27 +899,27 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     }
 
     override fun onAccessibilityStateChanged(enabled: Boolean) {
-        if (_browserToolbarView != null) {
-            browserToolbarView.setToolbarBehavior(enabled)
-        }
+        // if (_browserToolbarView != null) {
+        //     browserToolbarView.setToolbarBehavior(enabled)
+        // }
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
+    // override fun onConfigurationChanged(newConfig: Configuration) {
+    //     super.onConfigurationChanged(newConfig)
 
-        _browserToolbarView?.dismissMenu()
-    }
+    //     _browserToolbarView?.dismissMenu()
+    // }
 
     // This method is called in response to native web extension messages from
     // content scripts (e.g the reader view extension). By the time these
     // messages are processed the fragment/view may no longer be attached.
-    internal fun safeInvalidateBrowserToolbarView() {
-        context?.let {
-            val toolbarView = _browserToolbarView
-            if (toolbarView != null) {
-                toolbarView.view.invalidateActions()
-                toolbarView.toolbarIntegration.invalidateMenu()
-            }
-        }
-    }
+    // internal fun safeInvalidateBrowserToolbarView() {
+    //     context?.let {
+    //         val toolbarView = _browserToolbarView
+    //         if (toolbarView != null) {
+    //             toolbarView.view.invalidateActions()
+    //             toolbarView.toolbarIntegration.invalidateMenu()
+    //         }
+    //     }
+    // }
 }

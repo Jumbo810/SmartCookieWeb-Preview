@@ -1,19 +1,19 @@
-package com.cookiejarapps.android.smartcookieweb.search.awesomebar
+// package com.cookiejarapps.android.smartcookieweb.search.awesomebar
 
-import mozilla.components.browser.state.search.SearchEngine
+// import mozilla.components.browser.state.search.SearchEngine
 
-interface AwesomeBarInteractor {
+// interface AwesomeBarInteractor {
 
-    fun onUrlTapped(url: String)
+//     fun onUrlTapped(url: String)
 
-    fun onSearchTermsTapped(searchTerms: String)
+//     fun onSearchTermsTapped(searchTerms: String)
 
-    fun onSearchShortcutEngineSelected(searchEngine: SearchEngine)
+//     fun onSearchShortcutEngineSelected(searchEngine: SearchEngine)
 
-    fun onClickSearchEngineSettings()
+//     fun onClickSearchEngineSettings()
 
-    fun onExistingSessionSelected(tabId: String)
+//     fun onExistingSessionSelected(tabId: String)
 
-    fun onSearchShortcutsButtonClicked()
+//     fun onSearchShortcutsButtonClicked()
 
-}
+// }

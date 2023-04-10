@@ -1,7 +1,7 @@
 package com.cookiejarapps.android.smartcookieweb
 
 import android.view.View
-import com.cookiejarapps.android.smartcookieweb.browser.ToolbarGestureHandler
+// import com.cookiejarapps.android.smartcookieweb.browser.ToolbarGestureHandler
 import com.cookiejarapps.android.smartcookieweb.databinding.FragmentBrowserBinding
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
@@ -30,16 +30,16 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
         val context = requireContext()
         val components = context.components
 
-        binding.gestureLayout.addGestureListener(
-            ToolbarGestureHandler(
-                activity = requireActivity(),
-                contentLayout = binding.browserLayout,
-                tabPreview = binding.tabPreview,
-                toolbarLayout = browserToolbarView.view,
-                store = components.store,
-                selectTabUseCase = components.tabsUseCases.selectTab
-            )
-        )
+        // binding.gestureLayout.addGestureListener(
+        //     ToolbarGestureHandler(
+        //         activity = requireActivity(),
+        //         contentLayout = binding.browserLayout,
+        //         tabPreview = binding.tabPreview,
+        //         toolbarLayout = browserToolbarView.view,
+        //         store = components.store,
+        //         selectTabUseCase = components.tabsUseCases.selectTab
+        //     )
+        // )
 
         thumbnailsFeature.set(
             feature = BrowserThumbnails(context, binding.engineView, components.store),
@@ -47,16 +47,16 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
             view = view
         )
 
-        if(UserPreferences(requireContext()).showAddonsInBar){
-            webExtToolbarFeature.set(
-                feature = WebExtensionToolbarFeature(
-                    browserToolbarView.view,
-                    components.store
-                ),
-                owner = this,
-                view = view
-            )
-        }
+        // if(UserPreferences(requireContext()).showAddonsInBar){
+        //     webExtToolbarFeature.set(
+        //         feature = WebExtensionToolbarFeature(
+        //             browserToolbarView.view,
+        //             components.store
+        //         ),
+        //         owner = this,
+        //         view = view
+        //     )
+        // }
 
         windowFeature.set(
             feature = WindowFeature(

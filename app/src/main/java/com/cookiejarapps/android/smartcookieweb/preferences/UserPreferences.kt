@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 import com.cookiejarapps.android.smartcookieweb.browser.AddonSortType
 import com.cookiejarapps.android.smartcookieweb.browser.HomepageChoice
 import com.cookiejarapps.android.smartcookieweb.browser.ThemeChoice
-import com.cookiejarapps.android.smartcookieweb.components.toolbar.ToolbarPosition
+// import com.cookiejarapps.android.smartcookieweb.components.toolbar.ToolbarPosition
 import mozilla.components.support.ktx.android.content.*
 
 class UserPreferences(appContext: Context): PreferencesHolder {
@@ -27,7 +27,7 @@ class UserPreferences(appContext: Context): PreferencesHolder {
     var searchEngineChoice by intPreference(SEARCH_ENGINE, 0)
     var customSearchEngine by booleanPreference(CUSTOM_SEARCH_ENGINE, false)
     var customSearchEngineURL by stringPreference(CUSTOM_SEARCH_ENGINE_URL, "")
-    var toolbarPosition by intPreference(TOOLBAR_POSITION, ToolbarPosition.TOP.ordinal)
+    // var toolbarPosition by intPreference(TOOLBAR_POSITION, ToolbarPosition.TOP.ordinal)
     var homepageType by intPreference(HOMEPAGE_TYPE, HomepageChoice.VIEW.ordinal)
     var customHomepageUrl by stringPreference(HOMEPAGE_URL, "")
     var appThemeChoice by intPreference(APP_THEME_CHOICE, ThemeChoice.SYSTEM.ordinal)
@@ -55,18 +55,18 @@ class UserPreferences(appContext: Context): PreferencesHolder {
     var trustThirdPartyCerts by booleanPreference(TRUST_THIRD_PARTY_CERTS, false)
 
     // TODO: make these configurable & clean up duplicates
-    var shouldUseBottomToolbar: Boolean
-        get(){
-            return toolbarPosition == ToolbarPosition.BOTTOM.ordinal
-        }
-        set(value){
-            if(value) toolbarPosition = ToolbarPosition.BOTTOM.ordinal else toolbarPosition = ToolbarPosition.TOP.ordinal
-        }
+    // var shouldUseBottomToolbar: Boolean
+    //     get(){
+    //         return toolbarPosition == ToolbarPosition.BOTTOM.ordinal
+    //     }
+    //     set(value){
+    //         if(value) toolbarPosition = ToolbarPosition.BOTTOM.ordinal else toolbarPosition = ToolbarPosition.TOP.ordinal
+    //     }
 
-    val toolbarPositionType: ToolbarPosition
-        get(){
-            return if(toolbarPosition == ToolbarPosition.BOTTOM.ordinal) ToolbarPosition.BOTTOM else ToolbarPosition.TOP
-        }
+    // val toolbarPositionType: ToolbarPosition
+    //     get(){
+    //         return if(toolbarPosition == ToolbarPosition.BOTTOM.ordinal) ToolbarPosition.BOTTOM else ToolbarPosition.TOP
+    //     }
 
     companion object {
         const val SCW_PREFERENCES = "scw_preferences"

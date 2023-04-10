@@ -30,18 +30,18 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.cookiejarapps.android.smartcookieweb.BrowserActivity
 import com.cookiejarapps.android.smartcookieweb.R
-import com.cookiejarapps.android.smartcookieweb.addons.AddonsActivity
+// import com.cookiejarapps.android.smartcookieweb.addons.AddonsActivity
 import com.cookiejarapps.android.smartcookieweb.browser.BrowsingMode
-import com.cookiejarapps.android.smartcookieweb.browser.shortcuts.ShortcutDatabase
-import com.cookiejarapps.android.smartcookieweb.browser.shortcuts.ShortcutEntity
-import com.cookiejarapps.android.smartcookieweb.browser.shortcuts.ShortcutGridAdapter
-import com.cookiejarapps.android.smartcookieweb.databinding.FragmentBookmarkBinding
+// import com.cookiejarapps.android.smartcookieweb.browser.shortcuts.ShortcutDatabase
+// import com.cookiejarapps.android.smartcookieweb.browser.shortcuts.ShortcutEntity
+// import com.cookiejarapps.android.smartcookieweb.browser.shortcuts.ShortcutGridAdapter
+// import com.cookiejarapps.android.smartcookieweb.databinding.FragmentBookmarkBinding
 import com.cookiejarapps.android.smartcookieweb.databinding.FragmentHomeBinding
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import com.cookiejarapps.android.smartcookieweb.ext.nav
-import com.cookiejarapps.android.smartcookieweb.history.HistoryActivity
+// import com.cookiejarapps.android.smartcookieweb.history.HistoryActivity
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
-import com.cookiejarapps.android.smartcookieweb.settings.activity.SettingsActivity
+// import com.cookiejarapps.android.smartcookieweb.settings.activity.SettingsActivity
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -54,7 +54,7 @@ import mozilla.components.browser.state.selector.privateTabs
 import mozilla.components.browser.state.state.BrowserState
 import mozilla.components.browser.state.state.selectedOrDefaultSearchEngine
 import mozilla.components.browser.state.store.BrowserStore
-import mozilla.components.browser.toolbar.behavior.ToolbarPosition
+// import mozilla.components.browser.toolbar.behavior.ToolbarPosition
 import mozilla.components.lib.state.ext.consumeFlow
 import mozilla.components.lib.state.ext.consumeFrom
 import mozilla.components.support.ktx.android.content.getColorFromAttr
@@ -66,7 +66,7 @@ import java.lang.ref.WeakReference
 
 @ExperimentalCoroutinesApi
 class HomeFragment : Fragment() {
-    private var database: ShortcutDatabase? = null
+    // private var database: ShortcutDatabase? = null
 
     private val args by navArgs<HomeFragmentArgs>()
     private lateinit var bundleArgs: Bundle
@@ -102,7 +102,7 @@ class HomeFragment : Fragment() {
         val activity = activity as BrowserActivity
         val components = requireContext().components
 
-        updateLayout(view)
+        // updateLayout(view)
 
         if(!UserPreferences(requireContext()).showShortcuts){
             binding.shortcutName.visibility = View.GONE
@@ -127,57 +127,57 @@ class HomeFragment : Fragment() {
             }
         }
 
-        GlobalScope.launch {
-            // Update shortcut database to hold name
-            val MIGRATION_1_2: Migration = object : Migration(1, 2) {
-                override fun migrate(database: SupportSQLiteDatabase) {
-                    database.execSQL("ALTER TABLE shortcutentity ADD COLUMN title TEXT")
-                }
-            }
+        // GlobalScope.launch {
+        //     // Update shortcut database to hold name
+        //     val MIGRATION_1_2: Migration = object : Migration(1, 2) {
+        //         override fun migrate(database: SupportSQLiteDatabase) {
+        //             database.execSQL("ALTER TABLE shortcutentity ADD COLUMN title TEXT")
+        //         }
+        //     }
 
-            database = Room.databaseBuilder(
-                requireContext(),
-                ShortcutDatabase::class.java, "shortcut-database"
-            ).addMigrations(MIGRATION_1_2).build()
+        //     database = Room.databaseBuilder(
+        //         requireContext(),
+        //         ShortcutDatabase::class.java, "shortcut-database"
+        //     ).addMigrations(MIGRATION_1_2).build()
 
-            val shortcutDao = database?.shortcutDao()
-            val shortcuts: MutableList<ShortcutEntity> = shortcutDao?.getAll() as MutableList
+        //     val shortcutDao = database?.shortcutDao()
+        //     val shortcuts: MutableList<ShortcutEntity> = shortcutDao?.getAll() as MutableList
 
-            val adapter = ShortcutGridAdapter(requireContext(), shortcuts)
+        //     val adapter = ShortcutGridAdapter(requireContext(), shortcuts)
 
-            ThreadUtils.runOnUiThread {
-                binding.shortcutGrid.adapter = adapter
-            }
-        }
+        //     ThreadUtils.runOnUiThread {
+        //         binding.shortcutGrid.adapter = adapter
+        //     }
+        // }
 
-        binding.shortcutGrid.setOnItemClickListener { _, _, position, _ ->
-            findNavController().navigate(
-                    R.id.browserFragment
-                )
+        // binding.shortcutGrid.setOnItemClickListener { _, _, position, _ ->
+        //     findNavController().navigate(
+        //             R.id.browserFragment
+        //         )
 
-                components.sessionUseCases.loadUrl(
-                    (binding.shortcutGrid.adapter.getItem(position) as ShortcutEntity).url!!)
-        }
+        //         components.sessionUseCases.loadUrl(
+        //             (binding.shortcutGrid.adapter.getItem(position) as ShortcutEntity).url!!)
+        // }
 
-        binding.shortcutGrid.setOnItemLongClickListener { _, _, position, _ ->
-            val items = arrayOf(resources.getString(R.string.edit_shortcut), resources.getString(R.string.delete_shortcut))
+        // binding.shortcutGrid.setOnItemLongClickListener { _, _, position, _ ->
+        //     val items = arrayOf(resources.getString(R.string.edit_shortcut), resources.getString(R.string.delete_shortcut))
 
-            AlertDialog.Builder(requireContext())
-                .setTitle(resources.getString(R.string.edit_shortcut))
-                .setItems(items) { _, which ->
-                    when(which){
-                        0 -> showEditShortcutDialog(position, binding.shortcutGrid.adapter as ShortcutGridAdapter)
-                        1 -> deleteShortcut(binding.shortcutGrid.adapter.getItem(position) as ShortcutEntity, binding.shortcutGrid.adapter as ShortcutGridAdapter)
-                    }
-                }
-                .show()
+        //     AlertDialog.Builder(requireContext())
+        //         .setTitle(resources.getString(R.string.edit_shortcut))
+        //         .setItems(items) { _, which ->
+        //             when(which){
+        //                 0 -> showEditShortcutDialog(position, binding.shortcutGrid.adapter as ShortcutGridAdapter)
+        //                 1 -> deleteShortcut(binding.shortcutGrid.adapter.getItem(position) as ShortcutEntity, binding.shortcutGrid.adapter as ShortcutGridAdapter)
+        //             }
+        //         }
+        //         .show()
 
-            return@setOnItemLongClickListener true
-        }
+        //     return@setOnItemLongClickListener true
+        // }
 
-        binding.addShortcut.setOnClickListener {
-            showCreateShortcutDialog(binding.shortcutGrid.adapter as ShortcutGridAdapter)
-        }
+        // binding.addShortcut.setOnClickListener {
+        //     showCreateShortcutDialog(binding.shortcutGrid.adapter as ShortcutGridAdapter)
+        // }
 
         if(browsingModeManager.mode == BrowsingMode.Private) {
             binding.toolbarWrapper.background = context?.let { ContextCompat.getDrawable(it, R.drawable.toolbar_background_private) }
@@ -194,103 +194,103 @@ class HomeFragment : Fragment() {
         getMenuButton()?.dismissMenu()
     }
 
-    private fun showEditShortcutDialog(position: Int, adapter: ShortcutGridAdapter){
-        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(resources.getString(R.string.edit_shortcut))
-        val viewInflated: View = LayoutInflater.from(context).inflate(R.layout.add_shortcut_dialog, view as ViewGroup?, false)
-        val url = viewInflated.findViewById<View>(R.id.urlEditText) as EditText
-        url.setText(adapter.list[position].url)
-        val name = viewInflated.findViewById<View>(R.id.nameEditText) as EditText
-        name.setText(adapter.list[position].title)
-        builder.setView(viewInflated)
+    // private fun showEditShortcutDialog(position: Int, adapter: ShortcutGridAdapter){
+    //     val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+    //     builder.setTitle(resources.getString(R.string.edit_shortcut))
+    //     val viewInflated: View = LayoutInflater.from(context).inflate(R.layout.add_shortcut_dialog, view as ViewGroup?, false)
+    //     val url = viewInflated.findViewById<View>(R.id.urlEditText) as EditText
+    //     url.setText(adapter.list[position].url)
+    //     val name = viewInflated.findViewById<View>(R.id.nameEditText) as EditText
+    //     name.setText(adapter.list[position].title)
+    //     builder.setView(viewInflated)
 
-        builder.setPositiveButton(android.R.string.ok) { _, _ ->
-            val item = adapter.list[position]
-            item.url = url.text.toString()
-            item.title = name.text.toString()
-            adapter.notifyDataSetChanged()
+    //     builder.setPositiveButton(android.R.string.ok) { _, _ ->
+    //         val item = adapter.list[position]
+    //         item.url = url.text.toString()
+    //         item.title = name.text.toString()
+    //         adapter.notifyDataSetChanged()
 
-            GlobalScope.launch {
-                database?.shortcutDao()?.update(item)
-            }
-        }
-        builder.setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.cancel() }
+    //         GlobalScope.launch {
+    //             database?.shortcutDao()?.update(item)
+    //         }
+    //     }
+    //     builder.setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.cancel() }
 
-        builder.show()
-    }
+    //     builder.show()
+    // }
 
-    private fun showCreateShortcutDialog(adapter: ShortcutGridAdapter){
-        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(resources.getString(R.string.add_shortcut))
-        val viewInflated: View = LayoutInflater.from(context).inflate(R.layout.add_shortcut_dialog, view as ViewGroup?, false)
-        val url = viewInflated.findViewById<View>(R.id.urlEditText) as EditText
-        val name = viewInflated.findViewById<View>(R.id.nameEditText) as EditText
-        builder.setView(viewInflated)
+    // private fun showCreateShortcutDialog(adapter: ShortcutGridAdapter){
+    //     val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+    //     builder.setTitle(resources.getString(R.string.add_shortcut))
+    //     val viewInflated: View = LayoutInflater.from(context).inflate(R.layout.add_shortcut_dialog, view as ViewGroup?, false)
+    //     val url = viewInflated.findViewById<View>(R.id.urlEditText) as EditText
+    //     val name = viewInflated.findViewById<View>(R.id.nameEditText) as EditText
+    //     builder.setView(viewInflated)
 
-        builder.setPositiveButton(android.R.string.ok) { dialog, _ ->
-            dialog.dismiss()
-            val list = adapter.list
-            list.add(ShortcutEntity(url = url.text.toString(), title = name.text.toString()))
-            adapter.list = list
-            adapter.notifyDataSetChanged()
+    //     builder.setPositiveButton(android.R.string.ok) { dialog, _ ->
+    //         dialog.dismiss()
+    //         val list = adapter.list
+    //         list.add(ShortcutEntity(url = url.text.toString(), title = name.text.toString()))
+    //         adapter.list = list
+    //         adapter.notifyDataSetChanged()
 
-            GlobalScope.launch {
-                database?.shortcutDao()?.insertAll(ShortcutEntity(url = url.text.toString(), title = name.text.toString()))
-            }
-        }
-        builder.setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.cancel() }
+    //         GlobalScope.launch {
+    //             database?.shortcutDao()?.insertAll(ShortcutEntity(url = url.text.toString(), title = name.text.toString()))
+    //         }
+    //     }
+    //     builder.setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.cancel() }
 
-        builder.show()
-    }
+    //     builder.show()
+    // }
 
-    private fun deleteShortcut(shortcutEntity: ShortcutEntity, adapter: ShortcutGridAdapter) {
-        val list = adapter.list
-        list.remove(shortcutEntity)
-        adapter.list = list
-        adapter.notifyDataSetChanged()
+    // private fun deleteShortcut(shortcutEntity: ShortcutEntity, adapter: ShortcutGridAdapter) {
+    //     val list = adapter.list
+    //     list.remove(shortcutEntity)
+    //     adapter.list = list
+    //     adapter.notifyDataSetChanged()
 
-        GlobalScope.launch {
-            database?.shortcutDao()?.delete(shortcutEntity)
-        }
-    }
+    //     GlobalScope.launch {
+    //         database?.shortcutDao()?.delete(shortcutEntity)
+    //     }
+    // }
 
-    private fun updateLayout(view: View) {
-        when (UserPreferences(view.context).toolbarPosition) {
-            ToolbarPosition.TOP.ordinal -> {
-                binding.toolbarLayout.layoutParams = CoordinatorLayout.LayoutParams(
-                    ConstraintLayout.LayoutParams.MATCH_PARENT,
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT
-                ).apply {
-                    gravity = Gravity.TOP
-                }
+    // private fun updateLayout(view: View) {
+    //     when (UserPreferences(view.context).toolbarPosition) {
+    //         ToolbarPosition.TOP.ordinal -> {
+    //             binding.toolbarLayout.layoutParams = CoordinatorLayout.LayoutParams(
+    //                 ConstraintLayout.LayoutParams.MATCH_PARENT,
+    //                 ConstraintLayout.LayoutParams.WRAP_CONTENT
+    //             ).apply {
+    //                 gravity = Gravity.TOP
+    //             }
 
-                ConstraintSet().apply {
-                    clone(binding.toolbarLayout)
-                    clear(binding.bottomBar.id, BOTTOM)
-                    clear(binding.bottomBarShadow.id, BOTTOM)
-                    connect(binding.bottomBar.id, TOP, PARENT_ID, TOP)
-                    connect(binding.bottomBarShadow.id, TOP, binding.bottomBar.id, BOTTOM)
-                    connect(binding.bottomBarShadow.id, BOTTOM, PARENT_ID, BOTTOM)
-                    applyTo(binding.toolbarLayout)
-                }
+    //             ConstraintSet().apply {
+    //                 clone(binding.toolbarLayout)
+    //                 clear(binding.bottomBar.id, BOTTOM)
+    //                 clear(binding.bottomBarShadow.id, BOTTOM)
+    //                 connect(binding.bottomBar.id, TOP, PARENT_ID, TOP)
+    //                 connect(binding.bottomBarShadow.id, TOP, binding.bottomBar.id, BOTTOM)
+    //                 connect(binding.bottomBarShadow.id, BOTTOM, PARENT_ID, BOTTOM)
+    //                 applyTo(binding.toolbarLayout)
+    //             }
 
-                binding.homeAppBar.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                    topMargin =
-                        resources.getDimensionPixelSize(R.dimen.home_fragment_top_toolbar_header_margin)
-                }
-            }
-            ToolbarPosition.BOTTOM.ordinal -> {
-            }
-        }
-    }
+    //             binding.homeAppBar.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+    //                 topMargin =
+    //                     resources.getDimensionPixelSize(R.dimen.home_fragment_top_toolbar_header_margin)
+    //             }
+    //         }
+    //         ToolbarPosition.BOTTOM.ordinal -> {
+    //         }
+    //     }
+    // }
 
     @Suppress("LongMethod", "ComplexMethod")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        observeSearchEngineChanges()
-        createHomeMenu(requireContext(), WeakReference(binding.menuButton))
-        createTabCounterMenu(view)
+        // observeSearchEngineChanges()
+        // createHomeMenu(requireContext(), WeakReference(binding.menuButton))
+        // createTabCounterMenu(view)
 
         binding.menuButton.setColorFilter(
             ContextCompat.getColor(
@@ -299,13 +299,13 @@ class HomeFragment : Fragment() {
             )
         )
 
-        binding.toolbarWrapper.setOnClickListener {
-            navigateToSearch()
-        }
+        // binding.toolbarWrapper.setOnClickListener {
+        //     navigateToSearch()
+        // }
 
-        binding.tabButton.setOnClickListener {
-            openTabDrawer()
-        }
+        // binding.tabButton.setOnClickListener {
+        //     openTabDrawer()
+        // }
 
         if (browsingModeManager.mode.isPrivate) {
             requireActivity().window.addFlags(FLAG_SECURE)
@@ -319,46 +319,46 @@ class HomeFragment : Fragment() {
 
         updateTabCounter(components.store.state)
 
-        if (bundleArgs.getBoolean(FOCUS_ON_ADDRESS_BAR)) {
-            navigateToSearch()
-        }
+        // if (bundleArgs.getBoolean(FOCUS_ON_ADDRESS_BAR)) {
+        //     navigateToSearch()
+        // }
     }
 
-    private fun observeSearchEngineChanges() {
-        consumeFlow(store) { flow ->
-            flow.map { state -> state.search.selectedOrDefaultSearchEngine }
-                .ifChanged()
-                .collect { searchEngine ->
-                    if (searchEngine != null) {
-                        val iconSize =
-                            requireContext().resources.getDimensionPixelSize(R.dimen.icon_width)
-                        val searchIcon =
-                            BitmapDrawable(requireContext().resources, searchEngine.icon)
-                        searchIcon.setBounds(0, 0, iconSize, iconSize)
-                        binding.searchEngineIcon?.setImageDrawable(searchIcon)
-                    } else {
-                        binding.searchEngineIcon.setImageDrawable(null)
-                    }
-                }
-        }
-    }
+    // private fun observeSearchEngineChanges() {
+    //     consumeFlow(store) { flow ->
+    //         flow.map { state -> state.search.selectedOrDefaultSearchEngine }
+    //             .ifChanged()
+    //             .collect { searchEngine ->
+    //                 if (searchEngine != null) {
+    //                     val iconSize =
+    //                         requireContext().resources.getDimensionPixelSize(R.dimen.icon_width)
+    //                     val searchIcon =
+    //                         BitmapDrawable(requireContext().resources, searchEngine.icon)
+    //                     searchIcon.setBounds(0, 0, iconSize, iconSize)
+    //                     binding.searchEngineIcon?.setImageDrawable(searchIcon)
+    //                 } else {
+    //                     binding.searchEngineIcon.setImageDrawable(null)
+    //                 }
+    //             }
+    //     }
+    // }
 
-    private fun createTabCounterMenu(view: View) {
-        val browsingModeManager = (activity as BrowserActivity).browsingModeManager
-        val mode = browsingModeManager.mode
+    // private fun createTabCounterMenu(view: View) {
+    //     val browsingModeManager = (activity as BrowserActivity).browsingModeManager
+    //     val mode = browsingModeManager.mode
 
-        val onItemTapped: (TabCounterMenu.Item) -> Unit = {
-            if (it is TabCounterMenu.Item.NewTab) {
-                browsingModeManager.mode = BrowsingMode.Normal
-            } else if (it is TabCounterMenu.Item.NewPrivateTab) {
-                browsingModeManager.mode = BrowsingMode.Private
-            }
-        }
+    //     val onItemTapped: (TabCounterMenu.Item) -> Unit = {
+    //         if (it is TabCounterMenu.Item.NewTab) {
+    //             browsingModeManager.mode = BrowsingMode.Normal
+    //         } else if (it is TabCounterMenu.Item.NewPrivateTab) {
+    //             browsingModeManager.mode = BrowsingMode.Private
+    //         }
+    //     }
 
-        binding.tabButton.setOnLongClickListener {
-            true
-        }
-    }
+    //     binding.tabButton.setOnLongClickListener {
+    //         true
+    //     }
+    // }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -368,52 +368,52 @@ class HomeFragment : Fragment() {
         requireActivity().window.clearFlags(FLAG_SECURE)
     }
 
-    private fun navigateToSearch() {
-        val directions =
-            HomeFragmentDirections.actionGlobalSearchDialog(
-                sessionId = null
-            )
+    // private fun navigateToSearch() {
+    //     val directions =
+    //         HomeFragmentDirections.actionGlobalSearchDialog(
+    //             sessionId = null
+    //         )
 
-        // TODO: OPTIONS
-        nav(R.id.homeFragment, directions, null)
-    }
+    //     // TODO: OPTIONS
+    //     nav(R.id.homeFragment, directions, null)
+    // }
 
-    @SuppressWarnings("ComplexMethod", "LongMethod")
-    private fun createHomeMenu(context: Context, menuButtonView: WeakReference<MenuButton>) =
-        HomeMenu(
-            this.viewLifecycleOwner,
-            context,
-            onItemTapped = {
-                when (it) {
-                    HomeMenu.Item.Settings -> {
-                        val settings = Intent(activity, SettingsActivity::class.java)
-                        settings.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                        requireActivity().startActivity(settings)
-                    }
-                    HomeMenu.Item.Bookmarks -> {
-                        val drawerLayout = activity?.findViewById<DrawerLayout>(R.id.drawer_layout)
-                        val bookmarksDrawer = if(UserPreferences(requireContext()).swapDrawers) requireActivity().findViewById<FrameLayout>(R.id.left_drawer) else requireActivity().findViewById<FrameLayout>(R.id.right_drawer)
+    // @SuppressWarnings("ComplexMethod", "LongMethod")
+    // private fun createHomeMenu(context: Context, menuButtonView: WeakReference<MenuButton>) =
+    //     HomeMenu(
+    //         this.viewLifecycleOwner,
+    //         context,
+    //         onItemTapped = {
+    //             when (it) {
+    //                 HomeMenu.Item.Settings -> {
+    //                     val settings = Intent(activity, SettingsActivity::class.java)
+    //                     settings.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    //                     requireActivity().startActivity(settings)
+    //                 }
+    //                 HomeMenu.Item.Bookmarks -> {
+    //                     val drawerLayout = activity?.findViewById<DrawerLayout>(R.id.drawer_layout)
+    //                     val bookmarksDrawer = if(UserPreferences(requireContext()).swapDrawers) requireActivity().findViewById<FrameLayout>(R.id.left_drawer) else requireActivity().findViewById<FrameLayout>(R.id.right_drawer)
 
-                        if (bookmarksDrawer != null) {
-                            drawerLayout?.openDrawer(bookmarksDrawer)
-                        }
-                    }
-                    HomeMenu.Item.History -> {
-                        val settings = Intent(activity, HistoryActivity::class.java)
-                        settings.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                        activity?.startActivity(settings)
-                    }
-                    HomeMenu.Item.AddonsManager -> {
-                        val settings = Intent(activity, AddonsActivity::class.java)
-                        settings.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                        activity?.startActivity(settings)
-                    }
-                    else -> {}
-                }
-            },
-            onHighlightPresent = { menuButtonView.get()?.setHighlight(it) },
-            onMenuBuilderChanged = { menuButtonView.get()?.menuBuilder = it }
-        )
+    //                     if (bookmarksDrawer != null) {
+    //                         drawerLayout?.openDrawer(bookmarksDrawer)
+    //                     }
+    //                 }
+    //                 HomeMenu.Item.History -> {
+    //                     val settings = Intent(activity, HistoryActivity::class.java)
+    //                     settings.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    //                     activity?.startActivity(settings)
+    //                 }
+    //                 HomeMenu.Item.AddonsManager -> {
+    //                     val settings = Intent(activity, AddonsActivity::class.java)
+    //                     settings.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    //                     activity?.startActivity(settings)
+    //                 }
+    //                 else -> {}
+    //             }
+    //         },
+    //         onHighlightPresent = { menuButtonView.get()?.setHighlight(it) },
+    //         onMenuBuilderChanged = { menuButtonView.get()?.menuBuilder = it }
+    //     )
 
     private fun openTabDrawer() {
         val drawerLayout = activity?.findViewById<DrawerLayout>(R.id.drawer_layout)

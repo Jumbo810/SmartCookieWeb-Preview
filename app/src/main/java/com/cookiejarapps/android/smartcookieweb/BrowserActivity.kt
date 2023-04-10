@@ -20,12 +20,12 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import com.cookiejarapps.android.smartcookieweb.addons.WebExtensionPopupFragment
-import com.cookiejarapps.android.smartcookieweb.addons.WebExtensionTabletPopupFragment
+// import com.cookiejarapps.android.smartcookieweb.addons.WebExtensionPopupFragment
+// import com.cookiejarapps.android.smartcookieweb.addons.WebExtensionTabletPopupFragment
 import com.cookiejarapps.android.smartcookieweb.browser.*
-import com.cookiejarapps.android.smartcookieweb.browser.bookmark.ui.BookmarkFragment
+// import com.cookiejarapps.android.smartcookieweb.browser.bookmark.ui.BookmarkFragment
 import com.cookiejarapps.android.smartcookieweb.browser.home.HomeFragmentDirections
-import com.cookiejarapps.android.smartcookieweb.browser.tabs.TabsTrayFragment
+// import com.cookiejarapps.android.smartcookieweb.browser.tabs.TabsTrayFragment
 import com.cookiejarapps.android.smartcookieweb.databinding.ActivityMainBinding
 import com.cookiejarapps.android.smartcookieweb.ext.alreadyOnDestination
 import com.cookiejarapps.android.smartcookieweb.ext.components
@@ -61,7 +61,7 @@ import org.json.JSONObject
 /**
  * Activity that holds the [BrowserFragment].
  */
-open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostActivity {
+open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
 
     lateinit var binding: ActivityMainBinding
 
@@ -173,18 +173,18 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
 
-        val rightDrawer = if(UserPreferences(this).swapDrawers) TabsTrayFragment() else BookmarkFragment()
-        val leftDrawer = if(UserPreferences(this).swapDrawers) BookmarkFragment() else TabsTrayFragment()
+        // val rightDrawer = if(UserPreferences(this).swapDrawers) TabsTrayFragment() else BookmarkFragment()
+        // val leftDrawer = if(UserPreferences(this).swapDrawers) BookmarkFragment() else TabsTrayFragment()
 
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.right_drawer, rightDrawer)
-            commit()
-        }
+        // supportFragmentManager.beginTransaction().apply {
+        //     replace(R.id.right_drawer, rightDrawer)
+        //     commit()
+        // }
 
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.left_drawer, leftDrawer)
-            commit()
-        }
+        // supportFragmentManager.beginTransaction().apply {
+        //     replace(R.id.left_drawer, leftDrawer)
+        //     commit()
+        // }
 
         binding.drawerLayout.addDrawerListener(object : SimpleDrawerListener() {
             override fun onDrawerStateChanged(newState: Int) {
@@ -192,8 +192,8 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
                         GravityCompat.START
                     )
                 ) {
-                     val tabDrawer = if(UserPreferences(this@BrowserActivity).swapDrawers) rightDrawer else leftDrawer
-                    (tabDrawer as TabsTrayFragment).notifyBrowsingModeStateChanged()
+                    //  val tabDrawer = if(UserPreferences(this@BrowserActivity).swapDrawers) rightDrawer else leftDrawer
+                    // (tabDrawer as TabsTrayFragment).notifyBrowsingModeStateChanged()
                 }
             }
         })
@@ -260,18 +260,18 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
             else -> super.onCreateView(parent, name, context, attrs)
         }
 
-    override fun getSupportActionBarAndInflateIfNecessary(): ActionBar {
-        if (!isToolbarInflated) {
-            navigationToolbar = binding.navigationToolbarStub.inflate() as Toolbar
+    // override fun getSupportActionBarAndInflateIfNecessary(): ActionBar {
+    //     if (!isToolbarInflated) {
+    //         navigationToolbar = binding.navigationToolbarStub.inflate() as Toolbar
 
-            setSupportActionBar(navigationToolbar)
-            // Add ids to this that we don't want to have a toolbar back button
-            setupNavigationToolbar()
+    //         setSupportActionBar(navigationToolbar)
+    //         // Add ids to this that we don't want to have a toolbar back button
+    //         setupNavigationToolbar()
 
-            isToolbarInflated = true
-        }
-        return supportActionBar!!
-    }
+    //         isToolbarInflated = true
+    //     }
+    //     return supportActionBar!!
+    // }
 
     final override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         supportFragmentManager.primaryNavigationFragment?.childFragmentManager?.fragments?.forEach {
@@ -297,17 +297,17 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
 
     private fun openPopup(webExtensionState: WebExtensionState) {
         val fm: FragmentManager = supportFragmentManager
-        val editNameDialogFragment =
-            if(Utils().isTablet(this)) WebExtensionTabletPopupFragment()
-            else WebExtensionPopupFragment()
+        // val editNameDialogFragment =
+            // if(Utils().isTablet(this)) WebExtensionTabletPopupFragment()
+            // else WebExtensionPopupFragment()
 
         val bundle = Bundle()
         bundle.putString("web_extension_id", webExtensionState.id)
         intent.putExtra("web_extension_name", webExtensionState.name)
 
-        editNameDialogFragment.arguments = bundle
+        // editNameDialogFragment.arguments = bundle
 
-        editNameDialogFragment.show(fm, "fragment_edit_name")
+        // editNameDialogFragment.show(fm, "fragment_edit_name")
     }
 
     @Suppress("LongParameterList")

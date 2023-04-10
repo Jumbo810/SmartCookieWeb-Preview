@@ -10,7 +10,7 @@ import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.navigation.NavOptions
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import kotlinx.coroutines.launch
-import mozilla.components.browser.toolbar.behavior.ToolbarPosition
+// import mozilla.components.browser.toolbar.behavior.ToolbarPosition
 import mozilla.components.concept.engine.EngineView
 import java.lang.ref.WeakReference
 
@@ -75,16 +75,16 @@ class BrowserAnimator(
         fun getToolbarNavOptions(context: Context): NavOptions {
             val navOptions = NavOptions.Builder()
 
-            when (UserPreferences(context).toolbarPosition) {
-                ToolbarPosition.TOP.ordinal -> {
-                    navOptions.setEnterAnim(R.anim.fade_in)
-                    navOptions.setExitAnim(R.anim.fade_out)
-                }
-                ToolbarPosition.BOTTOM.ordinal -> {
-                    navOptions.setEnterAnim(R.anim.fade_in_up)
-                    navOptions.setExitAnim(R.anim.fade_out_down)
-                }
-            }
+            // when (UserPreferences(context).toolbarPosition) {
+            //     ToolbarPosition.TOP.ordinal -> {
+            //         navOptions.setEnterAnim(R.anim.fade_in)
+            //         navOptions.setExitAnim(R.anim.fade_out)
+            //     }
+            //     ToolbarPosition.BOTTOM.ordinal -> {
+            //         navOptions.setEnterAnim(R.anim.fade_in_up)
+            //         navOptions.setExitAnim(R.anim.fade_out_down)
+            //     }
+            // }
 
             return navOptions.build()
         }

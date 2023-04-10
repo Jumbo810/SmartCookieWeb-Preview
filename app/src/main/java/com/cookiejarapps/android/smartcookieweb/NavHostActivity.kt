@@ -1,7 +1,7 @@
-package com.cookiejarapps.android.smartcookieweb
+// package com.cookiejarapps.android.smartcookieweb
 
-import androidx.appcompat.app.ActionBar
+// import androidx.appcompat.app.ActionBar
 
-interface NavHostActivity {
-    fun getSupportActionBarAndInflateIfNecessary(): ActionBar
-}
+// interface NavHostActivity {
+//     fun getSupportActionBarAndInflateIfNecessary(): ActionBar
+// }
