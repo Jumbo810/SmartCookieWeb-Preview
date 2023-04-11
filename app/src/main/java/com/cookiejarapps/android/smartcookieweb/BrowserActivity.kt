@@ -26,7 +26,8 @@ import com.cookiejarapps.android.smartcookieweb.browser.*
 // import com.cookiejarapps.android.smartcookieweb.browser.bookmark.ui.BookmarkFragment
 import com.cookiejarapps.android.smartcookieweb.browser.home.HomeFragmentDirections
 // import com.cookiejarapps.android.smartcookieweb.browser.tabs.TabsTrayFragment
-import com.cookiejarapps.android.smartcookieweb.databinding.ActivityMainBinding
+// import com.cookiejarapps.android.smartcookieweb.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 import com.cookiejarapps.android.smartcookieweb.ext.alreadyOnDestination
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import com.cookiejarapps.android.smartcookieweb.ext.nav
@@ -63,7 +64,7 @@ import org.json.JSONObject
  */
 open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
 
-    lateinit var binding: ActivityMainBinding
+    // lateinit var binding: ActivityMainBinding
 
     lateinit var browsingModeManager: BrowsingModeManager
 
@@ -105,10 +106,11 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
             if (UserPreferences(this).lastKnownPrivate) BrowsingMode.Private else BrowsingMode.Normal
         )
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
+        // binding = ActivityMainBinding.inflate(layoutInflater)
+        // val view = binding.root
 
-        setContentView(view)
+        // setContentView(view)
+        setContentView(R.layout.activity_main)
 
         if(UserPreferences(this).firstLaunch){
             UserPreferences(this).firstLaunch = false
@@ -186,17 +188,17 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
         //     commit()
         // }
 
-        binding.drawerLayout.addDrawerListener(object : SimpleDrawerListener() {
-            override fun onDrawerStateChanged(newState: Int) {
-                if (newState == DrawerLayout.STATE_SETTLING && !binding.drawerLayout.isDrawerOpen(
-                        GravityCompat.START
-                    )
-                ) {
-                    //  val tabDrawer = if(UserPreferences(this@BrowserActivity).swapDrawers) rightDrawer else leftDrawer
-                    // (tabDrawer as TabsTrayFragment).notifyBrowsingModeStateChanged()
-                }
-            }
-        })
+        // binding.drawerLayout.addDrawerListener(object : SimpleDrawerListener() {
+        //     override fun onDrawerStateChanged(newState: Int) {
+        //         if (newState == DrawerLayout.STATE_SETTLING && !binding.drawerLayout.isDrawerOpen(
+        //                 GravityCompat.START
+        //             )
+        //         ) {
+        //             //  val tabDrawer = if(UserPreferences(this@BrowserActivity).swapDrawers) rightDrawer else leftDrawer
+        //             // (tabDrawer as TabsTrayFragment).notifyBrowsingModeStateChanged()
+        //         }
+        //     }
+        // })
 
         installPrintExtension()
 
@@ -338,7 +340,8 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
             customTabSessionId: String?
     ): NavDirections? = when (from) {
         BrowserDirection.FromGlobal ->
-            NavGraphDirections.actionGlobalBrowser(customTabSessionId)
+            HomeFragmentDirections.actionGlobalBrowser(customTabSessionId)
+            // NavGraphDirections.actionGlobalBrowser(customTabSessionId)
         BrowserDirection.FromHome ->
             HomeFragmentDirections.actionGlobalBrowser(customTabSessionId)
         BrowserDirection.FromSearchDialog ->
