@@ -415,14 +415,14 @@ class HomeFragment : Fragment() {
     //         onMenuBuilderChanged = { menuButtonView.get()?.menuBuilder = it }
     //     )
 
-    private fun openTabDrawer() {
-        val drawerLayout = activity?.findViewById<DrawerLayout>(R.id.drawer_layout)
-        val tabDrawer = if(UserPreferences(requireContext()).swapDrawers) requireActivity().findViewById<FrameLayout>(R.id.right_drawer) else requireActivity().findViewById<FrameLayout>(R.id.left_drawer)
+    // private fun openTabDrawer() {
+    //     val drawerLayout = activity?.findViewById<DrawerLayout>(R.id.drawer_layout)
+    //     val tabDrawer = if(UserPreferences(requireContext()).swapDrawers) requireActivity().findViewById<FrameLayout>(R.id.right_drawer) else requireActivity().findViewById<FrameLayout>(R.id.left_drawer)
 
-        if (tabDrawer != null) {
-            drawerLayout?.openDrawer(tabDrawer)
-        }
-    }
+    //     if (tabDrawer != null) {
+    //         drawerLayout?.openDrawer(tabDrawer)
+    //     }
+    // }
 
     private fun updateTabCounter(browserState: BrowserState) {
         val tabCount = if (browsingModeManager.mode.isPrivate) {

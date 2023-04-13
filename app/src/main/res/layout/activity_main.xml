@@ -30,7 +30,7 @@
         app:navGraph="@navigation/nav_graph" />
 
 
-        <FrameLayout
+        <!-- <FrameLayout
             android:id="@+id/left_drawer"
             android:layout_width="300dp"
             android:layout_height="match_parent"
@@ -52,7 +52,7 @@
             android:weightSum="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" /> -->
 
     </androidx.drawerlayout.widget.DrawerLayout>
 </LinearLayout>
